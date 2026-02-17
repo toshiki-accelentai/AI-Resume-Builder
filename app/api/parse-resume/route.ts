@@ -14,10 +14,10 @@ export async function POST(req: NextRequest) {
 
     const buffer = Buffer.from(await file.arrayBuffer());
 
-    // PDF — dynamic import to avoid pdf-parse test file loading issue
+    // PDF — use dynamic require to bypass Turbopack static analysis
     if (file.type === "application/pdf") {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const pdfParse = require("pdf-parse");
+      // eslint-disable-next-line no-eval
+      const pdfParse = eval('require')("pdf-parse");
       const data = await pdfParse(buffer);
       return NextResponse.json({ text: data.text });
     }

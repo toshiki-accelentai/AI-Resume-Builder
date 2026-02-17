@@ -114,7 +114,7 @@ export default function PreviewPanel() {
                     transform: `translateY(-${pageIndex * PAGE_CONTENT_HEIGHT}px)`,
                   }}
                 >
-                  <ResumePreview data={state.resumeData} />
+                  <ResumePreview data={state.resumeData!} />
                 </div>
               </div>
               {/* Page number */}

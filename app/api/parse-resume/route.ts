@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     // PDF — dynamic import to avoid pdf-parse test file loading issue
     if (file.type === "application/pdf") {
       // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const pdfParse = require("pdf-parse/lib/pdf-parse.js");
+      const pdfParse = require("pdf-parse");
       const data = await pdfParse(buffer);
       return NextResponse.json({ text: data.text });
     }
